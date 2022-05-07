@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  nodejs-backend:
+    container_name: planeta-backend
+    image: node:16.14-alpine3.14
+    # Your code: /opt/node-app
+    volumes:
+      - ./backend:/opt/node-app
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+      - DB_NAME=postgres
+      - DB_PASS=forDevelopment
+    links:
+      - postgresql:postgres
+    working_dir: /opt/node-app
+    tty: true
+  nodejs-frontend:
+    container_name: planeta-frontend
+    image: node:16.14-alpine3.14
+    # Your code: /opt/node-app
+    volumes:
+      - ./frontend:/opt/node-app
+    ports:
+      - 3001:3001
+    environment:
+      - PORT=3001
+    working_dir: /opt/node-app
+    tty: true
+  postgresql:
+    container_name: planeta-postgres
+    build: .
+    volumes:
+      - pgsql-volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=forDevelopment
+    ports:
+      - 5432:5432
+volumes:
+  pgsql-volume:
