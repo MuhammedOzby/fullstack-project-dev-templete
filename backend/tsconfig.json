@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"rootDir": ".",
+		"lib": ["es2021", "es5", "es6"],
+		"paths": { "@models/*": ["models/*"], "@routes/*": ["routes/*"] },
+		"module": "commonjs",
+		"target": "es2021",
+		"moduleResolution": "node",
+		"strictPropertyInitialization": false,
+		"experimentalDecorators": true,
+		"strict": false,
+		"emitDecoratorMetadata": true
+	},
+	"include": ["./**/*"],
+	"exclude": ["node_modules", "src/**/*.test.ts", "src/**/*.spec.ts"],
+	"ts-node": {
+		"require": ["tsconfig-paths/register"]
+	}
+}
